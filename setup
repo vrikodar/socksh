@@ -22,6 +22,8 @@ function exec_check() {
   then
       echo "[${BGreen}+${NC}] Found.....!"
   else
+	  echo "[${BRed}!${NC} Dependency Not Found......!]"
+  fi
 }
 
 function install() {
