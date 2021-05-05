@@ -64,7 +64,7 @@ sleep 2
 
 function check4145() {
 
-	timeout 0.5 echo >/dev/tcp/${1}/4145 &> /dev/null
+	timeout 0.2 echo >/dev/tcp/${1}/4145 &> /dev/null
 	if [ ${?} -eq 0 ]
 	then
 		echo ${1}:4145 >> sock5_live_proxies_$(date +%F)
@@ -73,7 +73,7 @@ function check4145() {
 
 function check1080() {
 	
-	timeout 0.5 echo >/dev/tcp/${1}/1080 &> /dev/null
+	timeout 0.2 echo >/dev/tcp/${1}/1080 &> /dev/null
 	if [ ${?} -eq 0 ]
 	then
 		echo ${1}:1080 >> sock5_live_proxies_$(date +%F)
@@ -83,7 +83,7 @@ function check1080() {
 
 function check9050() {
 
-	timeout 0.5 echo >/dev/tcp/${1}/9050 &> /dev/null
+	timeout 0.2 echo >/dev/tcp/${1}/9050 &> /dev/null
 	if [ ${?} -eq 0 ]
 	then
 		echo ${1}:9050 >> sock5_live_proxies_$(date +%F)
