@@ -38,3 +38,7 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
                 -fg --> file global adds the first 4 discovered proxies to global /etc/proxychains.conf file
 
                 # PLEASE REFER TO THE man.txt FILE PRESENT IN extras FOLDER IN THE REPOSITORY FOR MORE INFO
+
+*the gif below shows the proxies scraped by socksh in action with proxychains*
+
+
