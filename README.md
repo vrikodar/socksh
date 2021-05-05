@@ -24,6 +24,9 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
 
 ![Capture](https://github.com/SxNade/socksh/blob/main/extras/running.gif)
 
+# Common options
+            -d --> is the display option that displays the discovered proxies on the terminal
+            -s --> is the silent does not display the discovered proxies
 
 # Assistance For Proxychains
 
@@ -31,4 +34,7 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
 
 *you may also change the number of proxies to add*
 
-                # PLEASE REFER TO THE man.txt FILE PRESENT IN extras FOLDER IN THE REPOSITORY 
+                -fl --> file local adds the first 4 discovered proxies to local proxychains.conf file in current directory
+                -fg --> file global adds the first 4 discovered proxies to global /etc/proxychains.conf file
+
+                # PLEASE REFER TO THE man.txt FILE PRESENT IN extras FOLDER IN THE REPOSITORY FOR MORE INFO
