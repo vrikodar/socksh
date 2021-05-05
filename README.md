@@ -26,3 +26,9 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
 
 
 # Assistance For Proxychains
+
+*socksh can add first 4 discovered poxies to proxychains.conf file allowing you to use them all on the go.!*
+
+*you may also change the number of proxies to add*
+
+                # PLEASE REFER TO THE man.txt FILE PRESENT IN extras FOLDER IN THE REPOSITORY 
