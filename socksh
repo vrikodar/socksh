@@ -1,0 +1,225 @@
+#!/bin/bash
+
+BGreen='\033[1;32m'
+BRed='\033[1;31m'
+NC='\033[0m'
+BBlue='\033[1;34m'
+
+# Take a second to appericiate my art below!.......
+echo
+echo -e "        ${BRed}==|^|${BGreen}UK${NC}${BRed}==${NC}${NC}${BBlue}----${NC}${BGreen}200-OK${NC}"
+echo -e "          ${BBlue}|${NC}"
+echo -e "           ${BBlue}---${NC}${BRed}==${BGreen}US${NC}${BRed}|^|==${NC}"
+echo -e "           ${BBlue}|${NC} "
+echo -e "	    ${BBlue}|${NC}"
+echo -e "	${BRed}==|^|${NC}${BGreen}RU${NC}${BRed}==${NC} "
+echo -e "         ${BBlue}|${NC}"
+echo -e "${BBlue}- - - - -${NC}"
+echo -e "${BBlue}|${NC}          "
+echo -e "${BBlue}- - - - -${NC} https://nmap.org"
+echo -e "           ${BRed}|${NC}"
+echo -e "           ${BRed}|${NC}"
+echo -e "           ${BRed}^${NC}"
+echo -e '      ____
+     ||''  ||
+     ||__||
+     [ -=.]`)
+     ====== 0'
+sleep 3 
+clear
+echo
+echo -e "[${BGreen}+${NC}] socksh(${BRed}v1.1${NC}) execution started at ${BGreen} $(date +%T) ${NC}"
+notify-send "socksh(v1.1) initiated at $(date +%T) on $(date +%F)"
+echo " " >> socksh.log
+echo "socksh execution started at ::: $(date +%T) ::: on $(date +%F)" >> socksh.log
+sleep 1
+
+if [ $# -lt 1 ]
+then
+	echo -e "\n[${BRed}!${NC}] Insufficent arguments.."
+	echo -e "	usage: ${BRed}==${NC}${BGreen}>${NC}"
+	echo -e " 		./socksh ${BGreen}-d${NC} or ${BGreen}-s${NC} ${BRed}-options${NC} "
+	echo -e "-d  displays the discovered proxies on terminal...basically non-silent mode"
+	echo -e "-s  runs in silent mode ..does not display the discovered proxies"
+	echo -e "-fl adds first 4 discovered proxies to a local proxychains.conf file"
+	echo -e "-fg adds first 4 discovered proxies to a global proxychains.conf file in /etc/proxychains.conf"
+	echo -e "Tip: no matter which option you use socksh is going to save the discovered proxies to a file"
+	echo -e "Note: either one of -d or -s is mandatory for socksh to run!\n"
+	echo "Insufficent Arguments specified.exiting...." >> socksh.log
+	echo "socksh execution finished at $(date +%T) ::: on $(date +%F)" >> socksh.log
+	exit
+fi
+
+echo -e "\n[${BGreen}+${NC}] scraping ${BRed}sock${NC}${BGreen}5${NC} proxies now......\n"
+sleep 1
+
+curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0" https://spys.one/socks/ > sock5_list_temp
+
+grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' sock5_list_temp > sock5_list_$(date +%F)
+rm sock5_list_temp
+
+echo -e "\n[${BGreen}+${NC}] Initiating ${BRed}multithreaded${NC} filtering now.."
+echo -e "[${BGreen}!${NC}] this might take some time :: sleeping for 2 seconds..."
+sleep 2
+
+function check4145() {
+
+	timeout 2 nc -nv -w 1 ${1} 4145
+	if [ ${?} -eq 124 ]
+	then
+		echo ${1}:4145 >> sock5_live_proxies_$(date +%F)
+	fi
+}
+
+function check1080() {
+	
+	timeout 2 nc -nv -w 1 ${1} 1080
+	if [ ${?} -eq 124 ]
+	then
+		echo ${1}:1080 >> sock5_live_proxies_$(date +%F)
+	fi
+}
+
+
+function check9050() {
+
+	timeout 2 nc -nv -w 1 ${1} 9050
+	if [ ${?} -eq 124 ]
+	then
+		echo ${1}:9050 >> sock5_live_proxies_$(date +%F)
+	fi
+}
+
+function thread_filter() {
+	
+	numb=0
+	for ip in $(cat sock5_list_$(date +%F))
+	do
+		check4145 ${ip} &
+		check1080 ${ip} &
+		check9050 ${ip} &
+		((numb++))
+		((numb++))
+		((numb++))
+	done
+	wait
+	echo -e "\n${BGreen}[+]${NC} ${BRed}${numb}${NC} threads have been spawned..!"
+	sleep 3
+}
+
+function display() {
+
+	echo -e "${BRed}===================================================================================${NC}"
+	echo -e "Number of ${BGreen}alive${NC} ${BRed}SOCK5${NC} proxies Found: ${BGreen} $(cat sock5_live_proxies_$(date +%F) | wc -l)${NC}"
+	echo -e "[${BGreen}+${NC}] discovered proxies have been to saved to file sock5_live_proxies_$(date +%F) \n"
+	for proxy in $(cat sock5_live_proxies_$(date +%F))
+	do
+		echo -e "${BGreen}-->${NC} ${proxy}"
+	done
+}
+
+function silent() {
+	echo -e "[${BGreen}+${NC}] Running in ${BRed}silent${NC} mode..."
+	echo 
+	echo -e "Number of ${BGreen}alive${NC} ${BRed}SOCK5${NC} proxies Found ${BGreen} $(cat sock5_list_$(date +%F) | wc -l)${NC}"
+	echo -e "[${BGreen}+${NC}] discovered proxies have been to saved to file sock5_live_proxies_$(date +%F) \n"
+}
+
+function exec_check() {
+	if [ ${?} -eq 0 ]
+	then
+		echo -e "${BGreen}[+]${NC} all ${BRed}threads${NC} have been successfully completed..."
+	else
+		echo -e "${BRed}[!]${NC} some ${BRed}ERROR${NC} has occured check the log file!"
+		echo "ERROR in threadfiltering :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+		echo -e "[${BGreen}+${NC}] script execution finished at ${BGreen}$(date +%T)${NC}"
+		exit
+	fi
+}
+
+function exec_check_proxyfl() {
+	if [ ${?} -eq 0 ]
+	then
+		echo -e "\n${BGreen}[+]${NC} proxies have been successfully added..."
+	else
+		echo -e "${BRed}[!]${NC} some ${BRed}ERROR${NC} has occured check the log file!"
+		echo "ERROR while adding proxies :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+		echo -e "[${BGreen}+${NC}] script execution finished at ${BGreen}$(date +%T)${NC}"
+		exit
+	fi
+}
+
+function sort_unique() {
+	cat sock5_live_proxies_$(date +%F) | sort -u > sock5_uniq_live_proxies_$(date +%F)
+	rm sock5_live_proxies_$(date +%F)
+	rm sock5_list_$(date +%F)
+	mv sock5_uniq_live_proxies_$(date +%F) sock5_live_proxies_$(date +%F)
+}
+
+function proxychain_f() {
+	if [ "${1}" = "-fl" ]
+	then
+		echo "socksh adding first 4 proxies to local proxychains conf file :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+		echo -e "[${BGreen}+${NC}] adding first 4 discovered proxies to local proxychains.conf file"
+		count=0
+		for proxy in $(cat sock5_live_proxies_$(date +%F))
+		do
+			if [ ${count} -lt 4 ]
+			then
+				echo "$(echo ${proxy} | cut -d ":" -f 1) $(echo ${proxy} | cut -d ":" -f 2)" >> proxychains.conf
+				((count++))
+			fi
+		done
+
+	elif [ "${1}" = "-fg" ]
+	then
+		echo "socksh adding first 4 proxies to global proxychains conf file in /etc/proxychains.conf :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+		echo -e "[${BGreen}+${NC}] adding first 4 discovered proxies to global /etc/proxychains.conf file"
+		count=0
+		for proxy in $(cat sock5_live_proxies_$(date +%F))
+		do
+			if [ ${count} -lt 4 ]
+			then
+				echo "$(echo ${proxy} | cut -d ":" -f 1) $(echo ${proxy} | cut -d ":" -f 2)" >> /etc/proxychains.conf
+				((count++))
+			fi
+		done
+		
+	fi
+
+}
+
+if [ "${1}" = "-d" ]
+then
+	echo "socksh running in display mode :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+	thread_filter
+	exec_check
+	sort_unique
+	sleep 1
+	display
+	proxychain_f ${2}
+	exec_check_proxyfl
+	echo -e "[${BGreen}+${NC}] socksh execution finished at ${BGreen}$(date +%T)${NC}"
+	echo "socksh execution finished at $(date +%T) ::: on $(date +%F)" >> socksh.log
+
+elif [ "${1}" = "-s" ]
+then
+	echo "socksh running in silent mode :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+	thread_filter
+	exec_check
+	sort_unique
+	sleep 1
+	silent
+	proxychain_f ${2}
+	exec_check_proxyfl
+	echo -e "[${BGreen}+${NC}] socksh execution finished at ${BGreen}$(date +%T)${NC}\n"
+	echo "socksh execution finished at $(date +%T) ::: on $(date +%F)" >> socksh.log
+else
+	echo -e "[${BRed}!${NC}] something is wrong with your options bozzy..."
+	echo "Incorrect first argument$(date +%T) ::: on $(date +%F)" >> socksh.log
+	echo -e "[${BGreen}+${NC}] socksh execution finished at ${BGreen}$(date +%T)${NC}\n"
+	echo "socksh execution finished at $(date +%T) ::: on $(date +%F)" >> socksh.log
+
+fi
+
+
