@@ -21,3 +21,6 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
 
                 $ cd socksh
                 $ ./socksh -d or -s -options
+
+![Capture](https://github.com/SxNade/socksh/blob/main/extras/running.gif)
+
