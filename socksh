@@ -53,7 +53,7 @@ fi
 echo -e "\n[${BGreen}+${NC}] scraping ${BRed}sock${NC}${BGreen}5${NC} proxies now......\n"
 sleep 1
 
-curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0" https://spys.one/socks/ > sock5_list_temp
+curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0" https://spys.one/en/socks-proxy-list/ > sock5_list_temp
 
 grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' sock5_list_temp > sock5_list_$(date +%F)
 rm sock5_list_temp
@@ -64,8 +64,8 @@ sleep 2
 
 function check4145() {
 
-	timeout 2 nc -nv -w 1 ${1} 4145
-	if [ ${?} -eq 124 ]
+	timeout 2 echo >/dev/tcp/${1}/4145 &> /dev/null
+	if [ ${?} -eq 0 ]
 	then
 		echo ${1}:4145 >> sock5_live_proxies_$(date +%F)
 	fi
@@ -73,8 +73,8 @@ function check4145() {
 
 function check1080() {
 	
-	timeout 2 nc -nv -w 1 ${1} 1080
-	if [ ${?} -eq 124 ]
+	timeout 2 echo >/dev/tcp/${1}/1080 &> /dev/null
+	if [ ${?} -eq 0 ]
 	then
 		echo ${1}:1080 >> sock5_live_proxies_$(date +%F)
 	fi
@@ -83,8 +83,8 @@ function check1080() {
 
 function check9050() {
 
-	timeout 2 nc -nv -w 1 ${1} 9050
-	if [ ${?} -eq 124 ]
+	timeout 2 echo >/dev/tcp/${1}/9050 &> /dev/null
+	if [ ${?} -eq 0 ]
 	then
 		echo ${1}:9050 >> sock5_live_proxies_$(date +%F)
 	fi
