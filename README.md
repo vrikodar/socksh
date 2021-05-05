@@ -30,12 +30,12 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
 
 # Assistance For Proxychains
 
-*socksh can add first 3 discovered poxies to proxychains.conf file allowing you to use them all on the go.!*
+*socksh can add first 2 discovered poxies to proxychains.conf file allowing you to use them all on the go.!*
 
 *you may also change the number of proxies to add*
 
-                -fl --> file local adds the first 3 discovered proxies to local proxychains.conf file in current directory
-                -fg --> file global adds the first 3 discovered proxies to global /etc/proxychains.conf file
+                -fl --> file local adds the first 2 discovered proxies to local proxychains.conf file in current directory
+                -fg --> file global adds the first 2 discovered proxies to global /etc/proxychains.conf file
 
                 # PLEASE REFER TO THE man.txt FILE PRESENT IN extras FOLDER IN THE REPOSITORY FOR MORE INFO
 
