@@ -14,23 +14,22 @@ then
 fi
 
 apt install curl 
-apt install curl
-
+apt install proxychains
 
 function exec_check() {
   if [ $? -eq 0 ]
   then
       echo -e "[${BGreen}+${NC}] Found....."
   else
-	  echo -e "[${BRed}!${NC}] Dependency Not Found.....!"
+	  echo -e "[${BRed}!${NC}] Dependency ${BRed}${1}${NC} Not Found....."
   fi
 }
 
 function install() {
       which curl
-      exec_check
+      exec_check curl
       which proxychains
-      exec_check
+      exec_check proxychains
 }
 
 install
