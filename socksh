@@ -166,7 +166,7 @@ function proxychain_f() {
 		do
 			if [ ${count} -lt 4 ]
 			then
-				echo "$(echo ${proxy} | cut -d ":" -f 1) $(echo ${proxy} | cut -d ":" -f 2)" >> proxychains.conf
+				echo "socks5 $(echo ${proxy} | cut -d ":" -f 1) $(echo ${proxy} | cut -d ":" -f 2)" >> proxychains.conf
 				((count++))
 			fi
 		done
@@ -180,7 +180,7 @@ function proxychain_f() {
 		do
 			if [ ${count} -lt 4 ]
 			then
-				echo "$(echo ${proxy} | cut -d ":" -f 1) $(echo ${proxy} | cut -d ":" -f 2)" >> /etc/proxychains.conf
+				echo "socks5 $(echo ${proxy} | cut -d ":" -f 1) $(echo ${proxy} | cut -d ":" -f 2)" >> /etc/proxychains.conf
 				((count++))
 			fi
 		done
