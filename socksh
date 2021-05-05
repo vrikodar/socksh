@@ -39,11 +39,11 @@ then
 	echo -e "\n[${BRed}!${NC}] Insufficent arguments.."
 	echo -e "	usage: ${BRed}==${NC}${BGreen}>${NC}"
 	echo -e " 		./socksh ${BGreen}-d${NC} or ${BGreen}-s${NC} ${BRed}-options${NC} \n"
-	echo -e "-d  displays the discovered proxies on terminal...basically non-silent mode"
-	echo -e "-s  runs in silent mode ..does not display the discovered proxies"
-	echo -e "-fl adds first 4 discovered proxies to a local proxychains.conf file"
-	echo -e "-fg adds first 4 discovered proxies to a global proxychains.conf file in /etc/proxychains.conf"
-	echo -e "Tip: no matter which option you use socksh is going to save the discovered proxies to a file"
+	echo -e "-d  displays the discovered proxies on terminal...basically non-silent mode\n"
+	echo -e "-s  runs in silent mode ..does not display the discovered proxies\n"
+	echo -e "-fl adds first 4 discovered proxies to a local proxychains.conf file\n"
+	echo -e "-fg adds first 4 discovered proxies to a global proxychains.conf file in /etc/proxychains.conf\n"
+	echo -e "Tip: no matter which option you use socksh is going to save the discovered proxies to a file\n"
 	echo -e "Note: either one of -d or -s is mandatory for socksh to run!\n"
 	echo "Insufficent Arguments specified.exiting...." >> socksh.log
 	echo "socksh execution finished at $(date +%T) ::: on $(date +%F)" >> socksh.log
