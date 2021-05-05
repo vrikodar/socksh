@@ -14,3 +14,8 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
                 $ cd socksh
                 $ chmod +x setup
                 $ ./setup
+
+# Running socksh for scraping sock5 proxies
+
+                $ cd socksh
+                $ ./socksh -d or -s -options
