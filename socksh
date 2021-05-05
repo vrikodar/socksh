@@ -121,7 +121,7 @@ function display() {
 function silent() {
 	echo -e "[${BGreen}+${NC}] Running in ${BRed}silent${NC} mode..."
 	echo 
-	echo -e "Number of ${BGreen}alive${NC} ${BRed}SOCK5${NC} proxies Found ${BGreen} $(cat sock5_list_$(date +%F) | wc -l)${NC}"
+	echo -e "Number of ${BGreen}alive${NC} ${BRed}SOCK5${NC} proxies Found: ${BGreen} $(cat sock5_live_proxies_$(date +%F) | wc -l)${NC}"
 	echo -e "[${BGreen}+${NC}] discovered proxies have been to saved to file sock5_live_proxies_$(date +%F) \n"
 }
 
