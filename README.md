@@ -39,6 +39,7 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
 
                 # PLEASE REFER TO THE man.txt FILE PRESENT IN extras FOLDER IN THE REPOSITORY FOR MORE INFO
 
-*the gif below shows the proxies scraped by socksh in action with proxychains*
+*the gif below shows the proxies scraped by socksh in action with proxychains ....don't bother speed I am running on 10G...just kidding my internet is very slow!*
 
+![Capture](https://github.com/SxNade/socksh/blob/main/extras/proxy.gif)
 
