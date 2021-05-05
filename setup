@@ -1,0 +1,32 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+GR='\033[0;32m'
+BRed='\033[1;31m'
+BGreen='\033[1;32m'
+
+
+if [ "${UID}" -ne 0 ]
+then
+	echo -e "[${RED}*${NC}]Please Run the Script as Root..\n"
+	exit 
+fi
+
+apt install curl 
+apt install timeout
+
+
+function exec_check() {
+  if [ $? -eq 0 ]
+  then
+      echo "[${BGreen}+${NC}] Found.....!"
+  else
+}
+
+function install() {
+      which curl
+      exec_check()
+      which timeout
+      exec_check()
+}
