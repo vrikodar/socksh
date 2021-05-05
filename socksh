@@ -175,7 +175,7 @@ function proxychain_f() {
 		count=0
 		for proxy in $(cat sock5_live_proxies_$(date +%F))
 		do
-			if [ ${count} -lt 4 ]
+			if [ ${count} -lt 2 ]
 			then
 				echo "socks5 $(echo ${proxy} | cut -d ":" -f 1) $(echo ${proxy} | cut -d ":" -f 2)" >> proxychains.conf
 				((count++))
@@ -189,7 +189,7 @@ function proxychain_f() {
 		count=0
 		for proxy in $(cat sock5_live_proxies_$(date +%F))
 		do
-			if [ ${count} -lt 4 ]
+			if [ ${count} -lt 2 ]
 			then
 				echo "socks5 $(echo ${proxy} | cut -d ":" -f 1) $(echo ${proxy} | cut -d ":" -f 2)" >> /etc/proxychains.conf
 				((count++))
