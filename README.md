@@ -5,6 +5,6 @@ socksh automatically scrapes socks5 proxies from spyones list and can then also 
 ![Capture](https://github.com/SxNade/socksh/blob/main/socksh.png)
 
 
-    **socksh is multithreaded**
+    socksh is multithreaded
 
 # Installing socksh on your Linux system
