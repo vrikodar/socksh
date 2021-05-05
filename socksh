@@ -38,7 +38,7 @@ if [ $# -lt 1 ]
 then
 	echo -e "\n[${BRed}!${NC}] Insufficent arguments.."
 	echo -e "	usage: ${BRed}==${NC}${BGreen}>${NC}"
-	echo -e " 		./socksh ${BGreen}-d${NC} or ${BGreen}-s${NC} ${BRed}-options${NC} "
+	echo -e " 		./socksh ${BGreen}-d${NC} or ${BGreen}-s${NC} ${BRed}-options${NC} \n"
 	echo -e "-d  displays the discovered proxies on terminal...basically non-silent mode"
 	echo -e "-s  runs in silent mode ..does not display the discovered proxies"
 	echo -e "-fl adds first 4 discovered proxies to a local proxychains.conf file"
