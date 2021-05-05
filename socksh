@@ -58,6 +58,8 @@ then
 	if [ "${UID}" -ne 0 ]
 	then
 		echo -e "[${BRed}!${NC}]Please run socksh as root..It is required when running with -fg\n"
+		echo "-fg choosen which requires root..exiting now on::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+		echo -e "[${BGreen}+${NC}] script execution finished at ${BGreen}$(date +%T)${NC}"
 		exit
 	fi
 fi
