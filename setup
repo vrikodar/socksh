@@ -14,15 +14,14 @@ then
 fi
 
 apt install curl 
-apt install timeout
 
 
 function exec_check() {
   if [ $? -eq 0 ]
   then
-      echo -e "[${BGreen}+${NC}] Found.....!"
+      echo -e "[${BGreen}+${NC}] Found....."
   else
-	  echo -e "[${BRed}!${NC} Dependency Not Found......!]"
+	  echo -e "[${BRed}!${NC}] Dependency Not Found.....!"
   fi
 }
 
