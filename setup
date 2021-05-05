@@ -20,15 +20,17 @@ apt install timeout
 function exec_check() {
   if [ $? -eq 0 ]
   then
-      echo "[${BGreen}+${NC}] Found.....!"
+      echo -e "[${BGreen}+${NC}] Found.....!"
   else
-	  echo "[${BRed}!${NC} Dependency Not Found......!]"
+	  echo -e "[${BRed}!${NC} Dependency Not Found......!]"
   fi
 }
 
 function install() {
       which curl
-      exec_check()
+      exec_check
       which timeout
-      exec_check()
+      exec_check
 }
+
+install
