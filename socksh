@@ -113,8 +113,8 @@ function thread_filter() {
 		((numb++))
 		((numb++))
 	done
-	wait
 	echo -e "\n${BGreen}[+]${NC} ${BRed}${numb}${NC} threads have been spawned..!"
+	wait
 	sleep 3
 }
 
