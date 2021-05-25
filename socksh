@@ -1,3 +1,5 @@
+# That proxy saved you :) 
+
 #!/bin/bash
 
 BGreen='\033[1;32m'
