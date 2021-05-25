@@ -1,6 +1,6 @@
-# That proxy saved you :) 
-
 #!/bin/bash
+
+# That proxy saved you :) 
 
 BGreen='\033[1;32m'
 BRed='\033[1;31m'
