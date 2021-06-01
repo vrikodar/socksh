@@ -31,7 +31,7 @@ sleep 3
 clear
 echo
 echo -e "[${BGreen}+${NC}] socksh(${BRed}v2.1${NC}) execution started at ${BGreen} $(date +%T) ${NC}"
-notify-send "socksh(v1.2) initiated at $(date +%T) on $(date +%F)"
+notify-send "socksh(v2.1) initiated at $(date +%T) on $(date +%F)"
 echo " " >> socksh.log
 echo "socksh execution started at ::: $(date +%T) ::: on $(date +%F)" >> socksh.log
 sleep 1
