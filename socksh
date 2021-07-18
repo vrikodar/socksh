@@ -30,8 +30,8 @@ echo -e '      ____
 sleep 3 
 clear
 echo
-echo -e "[${BGreen}+${NC}] socksh(${BRed}v2.1${NC}) execution started at ${BGreen} $(date +%T) ${NC}"
-notify-send "socksh(v2.1) initiated at $(date +%T) on $(date +%F)"
+echo -e "[${BGreen}+${NC}] socksh(${BRed}v3.0${NC}) execution started at ${BGreen} $(date +%T) ${NC}"
+notify-send "socksh(v3.0) initiated at $(date +%T) on $(date +%F)"
 echo " " >> socksh.log
 echo "socksh execution started at ::: $(date +%T) ::: on $(date +%F)" >> socksh.log
 sleep 1
@@ -66,7 +66,7 @@ then
 	fi
 fi
 
-curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0" https://spys.one/en/socks-proxy-list/ > sock5_list_temp
+curl -s -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:58.0) Gecko/20100101 Firefox/58.0" https://spys.one/en/socks-proxy-list/ > sock5_list_temp
 
 grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' sock5_list_temp > sock5_list_$(date +%F)
 rm sock5_list_temp
