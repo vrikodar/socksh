@@ -43,8 +43,8 @@ then
 	echo -e " 		./socksh ${BGreen}-d${NC} or ${BGreen}-s${NC} ${BRed}-options${NC} \n"
 	echo -e "-d  displays the discovered proxies on terminal...basically non-silent mode\n"
 	echo -e "-s  runs in silent mode ..does not display the discovered proxies\n"
-	echo -e "-fl adds first 4 discovered proxies to a local proxychains.conf file\n"
-	echo -e "-fg adds first 4 discovered proxies to a global proxychains.conf file in /etc/proxychains.conf\n"
+	echo -e "-fl adds first 2 discovered proxies to a local proxychains.conf file\n"
+	echo -e "-fg adds first 2 discovered proxies to a global proxychains.conf file in /etc/proxychains.conf\n"
 	echo -e "Tip: no matter which option you use socksh is going to save the discovered proxies to a file\n"
 	echo -e "Note: either one of -d or -s is mandatory for socksh to run!\n"
 	echo "Insufficent Arguments specified.exiting...." >> socksh.log
@@ -172,8 +172,8 @@ function sort_unique() {
 function proxychain_f() {
 	if [ "${1}" = "-fl" ]
 	then
-		echo "socksh adding first 4 proxies to local proxychains conf file :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
-		echo -e "[${BGreen}+${NC}] adding first 4 discovered proxies to local proxychains.conf file"
+		echo "socksh adding first 2 proxies to local proxychains conf file :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+		echo -e "[${BGreen}+${NC}] adding first 2 discovered proxies to local proxychains.conf file"
 		count=0
 		for proxy in $(cat sock5_live_proxies_$(date +%F))
 		do
@@ -186,8 +186,8 @@ function proxychain_f() {
 
 	elif [ "${1}" = "-fg" ]
 	then
-		echo "socksh adding first 4 proxies to global proxychains conf file in /etc/proxychains.conf :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
-		echo -e "[${BGreen}+${NC}] adding first 4 discovered proxies to global /etc/proxychains.conf file"
+		echo "socksh adding first 2 proxies to global proxychains conf file in /etc/proxychains.conf :::: $(date +%F) ::: at $(date +%T)" >> socksh.log
+		echo -e "[${BGreen}+${NC}] adding first 2 discovered proxies to global /etc/proxychains.conf file"
 		count=0
 		for proxy in $(cat sock5_live_proxies_$(date +%F))
 		do
